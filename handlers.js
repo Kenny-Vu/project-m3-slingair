@@ -1,19 +1,22 @@
 const { flights } = require("./test-data/flightSeating");
 const { reservations } = require("./test-data/reservations");
 
+const { v4: uuidv4 } = require("uuid");
+
 let currentReservationId = ""; //this should keep track of the new id created from the last transaction
 
 //grabs user's info adds them to our list of users
 const handleConfirmation = (req, res) => {
   let reservation = req.body;
   let newReservation = {
-    id: "10", //note to self: use api to randomize number
+    id: uuidv4(), //note to self: use api to randomize number
     flight: reservation.flight,
     givenName: reservation.givenName,
     surname: reservation.surname,
     email: reservation.email,
     seat: reservation.seat,
   };
+  console.log(newReservation.id);
   reservations.push(newReservation);
   currentReservationId = newReservation.id;
   res.status(201);
