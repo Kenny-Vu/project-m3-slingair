@@ -7,9 +7,9 @@ const { flights } = require("./test-data/flightSeating");
 
 const {
   handleConfirmation,
-  handleSeatSelect,
   handleFlights,
   handleFlight,
+  handleConfirmationPage,
 } = require("./handlers");
 
 express()
@@ -27,12 +27,12 @@ express()
   .use(express.urlencoded({ extended: false }))
 
   // endpoints
-  .get("/seat-select", handleSeatSelect)
+  //NOT TO SELF: DON'T USE SAME PATH AS FILE IN PUBLIC FOLDER, IT WON'T WORK.
   .get("/flights", handleFlights)
   .get("/flights/:num", handleFlight)
   // .get("/view-reservation")
-  .get("/confirmed", handleConfirmation)
-  .post("/users", handleConfirmation) // user submits info form
+  .get("/confirmed/user", handleConfirmationPage)
+  .post("/users", handleConfirmation) // submits user infos
 
   .use((req, res) => res.send("Not Found"))
   .listen(8000, () => console.log(`Listening on port 8000`));

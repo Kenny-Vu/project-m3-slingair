@@ -71,12 +71,15 @@ const handleConfirmSeat = (event) => {
       givenName: document.getElementById("givenName").value,
       surname: document.getElementById("surname").value,
       email: document.getElementById("email").value,
+      flight: flightInput.value,
+      seat: selection,
     }),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
   });
+  window.location.href = "http://localhost:8000/confirmed/";
 };
 const dropdownSetup = () => {
   fetch("/flights")
