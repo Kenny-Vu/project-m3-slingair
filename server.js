@@ -10,6 +10,7 @@ const {
   handleFlights,
   handleFlight,
   handleConfirmationPage,
+  handleReservation,
 } = require("./handlers");
 
 express()
@@ -30,7 +31,7 @@ express()
   //NOT TO SELF: DON'T USE SAME PATH AS FILE IN PUBLIC FOLDER, IT WON'T WORK.
   .get("/flights", handleFlights)
   .get("/flights/:num", handleFlight)
-  // .get("/view-reservation")
+  .get("/reservation/:id", handleReservation)
   .get("/confirmed/user", handleConfirmationPage)
   .post("/users", handleConfirmation) // submits user infos
 

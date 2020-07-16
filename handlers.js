@@ -1,9 +1,9 @@
 const { flights } = require("./test-data/flightSeating");
 const { reservations } = require("./test-data/reservations");
 
-let currentReservationId = ""; //testing...this should keep track of the new id created from the last transaction
+let currentReservationId = ""; //this should keep track of the new id created from the last transaction
 
-//still for testing but can grab user input
+//grabs user's info adds them to our list of users
 const handleConfirmation = (req, res) => {
   let reservation = req.body;
   let newReservation = {
@@ -18,7 +18,7 @@ const handleConfirmation = (req, res) => {
   currentReservationId = newReservation.id;
   res.status(201);
 };
-//note to self: figure out how to send data to front end
+//handler to display user info on confirmation page
 const handleConfirmationPage = (req, res) => {
   let userId = currentReservationId;
   let userReservation = reservations.find(
@@ -41,9 +41,19 @@ const handleFlight = (req, res) => {
   });
   res.status(200).json(chosenFlight);
 };
+
+//function to get reservation using Id entered
+const handleReservation = (req, res) => {
+  const userId = req.params.id;
+  const userReservation = reservations.find((user) => user.id === userId);
+  res.status(200);
+  res.json(userReservation);
+};
+
 module.exports = {
   handleConfirmation,
   handleFlights,
   handleFlight,
   handleConfirmationPage,
+  handleReservation,
 };
