@@ -1,7 +1,7 @@
 const { flights } = require("./test-data/flightSeating");
 const { reservations } = require("./test-data/reservations");
 
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid"); //api to generate random id
 
 let currentReservationId = ""; //this should keep track of the new id created from the last transaction
 
@@ -9,7 +9,7 @@ let currentReservationId = ""; //this should keep track of the new id created fr
 const handleConfirmation = (req, res) => {
   let reservation = req.body;
   let newReservation = {
-    id: uuidv4(), //note to self: use api to randomize number
+    id: uuidv4(),
     flight: reservation.flight,
     givenName: reservation.givenName,
     surname: reservation.surname,

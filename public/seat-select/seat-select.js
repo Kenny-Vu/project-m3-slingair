@@ -49,17 +49,18 @@ const renderSeats = (data) => {
 
 const toggleFormContent = (event) => {
   const flightNumber = flightInput.value;
-  console.log("toggleFormContent: ", flightNumber);
-  fetch(`/flights/${flightNumber}`)
-    .then((res) => res.json())
-    .then((data) => {
-      renderSeats(data);
-    });
+  if (flightNumber[0] !== "S" && flightNumber[1] !== "A") {
+    window.alert("Flight number invalid");
+  } else {
+    fetch(`/flights/${flightNumber}`)
+      .then((res) => res.json())
+      .then((data) => {
+        renderSeats(data);
+      });
+  }
   // TODO: contact the server to get the seating availability
   //      - only contact the server if the flight number is this format 'SA###'.
   //      - Do I need to create an error message if the number is not valid?
-
-  // TODO: Pass the response data to renderSeats to create the appropriate seat-type.
 };
 
 const handleConfirmSeat = (event) => {
