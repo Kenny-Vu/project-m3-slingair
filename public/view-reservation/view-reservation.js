@@ -20,5 +20,8 @@ const handleIdSubmit = (event) => {
       lastName.innerText = data.surname;
       email.innerText = data.email;
       hiddenDiv.classList.add("active");
+    })
+    .catch((error) => {
+      window.alert("No reservations found under this email");
     });
 };

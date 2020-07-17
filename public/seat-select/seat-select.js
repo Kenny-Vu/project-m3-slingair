@@ -1,8 +1,14 @@
 const flightInput = document.getElementById("flight");
 const seatsDiv = document.getElementById("seats-section");
 const confirmButton = document.getElementById("confirm-button");
+const reservationButton = document.getElementById("reservation-button");
 
 let selection = "";
+
+const handleReservationButton = (event) => {
+  event.preventDefault();
+  window.location.href = "http://localhost:8000/view-reservation/";
+};
 
 const renderSeats = (data) => {
   document.querySelector(".form-container").style.display = "block";
@@ -98,4 +104,5 @@ const dropdownSetup = () => {
 };
 
 dropdownSetup();
+reservationButton.addEventListener("click", handleReservationButton);
 flightInput.addEventListener("change", toggleFormContent);

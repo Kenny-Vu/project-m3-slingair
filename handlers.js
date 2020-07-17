@@ -47,10 +47,13 @@ const handleFlight = (req, res) => {
 
 //function to get reservation using Id entered
 const handleReservation = (req, res) => {
-  const userId = req.params.id;
-  const userReservation = reservations.find((user) => user.id === userId);
-  res.status(200);
-  res.json(userReservation);
+  const userEmail = req.params.email;
+  const userReservation = reservations.find((user) => user.email === userEmail);
+  if (!!userReservation) {
+    res.status(200).json(userReservation);
+  } else {
+    res.status(400).send("error");
+  }
 };
 
 module.exports = {

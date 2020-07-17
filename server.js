@@ -3,7 +3,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const { flights } = require("./test-data/flightSeating");
 
 const {
   handleConfirmation,
@@ -31,7 +30,7 @@ express()
   //NOT TO SELF: DON'T USE SAME PATH AS FILE IN PUBLIC FOLDER, IT WON'T WORK.
   .get("/flights", handleFlights)
   .get("/flights/:num", handleFlight)
-  .get("/reservation/:id", handleReservation)
+  .get("/reservation/:email", handleReservation)
   .get("/confirmed/user", handleConfirmationPage)
   .post("/users", handleConfirmation) // submits user infos
 
