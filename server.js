@@ -10,6 +10,7 @@ const {
   handleFlight,
   handleConfirmationPage,
   handleReservation,
+  handleTest,
 } = require("./handlers");
 
 express()
@@ -33,6 +34,7 @@ express()
   .get("/reservation/:email", handleReservation)
   .get("/confirmed/user", handleConfirmationPage)
   .post("/users", handleConfirmation) // submits user infos
+  .get("/slingair/flights", handleTest)
 
   .use((req, res) => res.send("Not Found"))
   .listen(8000, () => console.log(`Listening on port 8000`));

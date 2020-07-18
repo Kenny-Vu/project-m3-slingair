@@ -93,8 +93,8 @@ const dropdownSetup = () => {
     .then((data) => {
       return data.json();
     })
-    .then((flights) => {
-      flights.forEach((flightId) => {
+    .then((response) => {
+      response.flights.forEach((flightId) => {
         const option = document.createElement("option");
         option.innerText = flightId;
         option.value = flightId;
