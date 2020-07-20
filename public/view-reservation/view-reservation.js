@@ -13,7 +13,8 @@ const handleIdSubmit = (event) => {
     .then((res) => {
       return res.json();
     })
-    .then((data) => {
+    .then((response) => {
+      const data = response.data;
       flight.innerText = data.flight;
       seat.innerText = data.seat;
       firstName.innerText = data.givenName;
@@ -22,6 +23,6 @@ const handleIdSubmit = (event) => {
       hiddenDiv.classList.add("active");
     })
     .catch((error) => {
-      window.alert("No reservations found under this email");
+      window.alert("Sorry, something broke on our side...");
     });
 };

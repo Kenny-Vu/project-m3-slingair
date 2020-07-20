@@ -47,6 +47,7 @@ const handleFlight = (req, res) => {
   const options = {
     uri: `${base_url}/slingair/flights/${flightId}`,
     json: true,
+    Accept: "application/json",
   };
   rp(options)
     .then((response) => {
@@ -65,29 +66,16 @@ const handleFlight = (req, res) => {
 //function to get reservation using Id entered
 const handleReservation = (req, res) => {
   const userEmail = req.params.email;
-  const userReservation = reservations.find((user) => user.email === userEmail);
-  if (!!userReservation) {
-    res.status(200).json(userReservation);
-  } else {
-    res.status(400).send("error");
-  }
-};
-
-//API TESSSSSSTT
-const handleTest = (req, res) => {
   const options = {
-    uri: `${base_url}/slingair/flights/SA666`,
+    uri: `${base_url}/slingair/users/${userEmail}`,
     json: true,
+    Accept: "application/json",
   };
   rp(options)
-    .then((res) => {
-      console.log(res);
-      res.status(200);
-      res.send(res);
+    .then((response) => {
+      res.status(`${response.status}`).json(response);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
 };
 
 module.exports = {
@@ -96,5 +84,4 @@ module.exports = {
   handleFlight,
   handleConfirmationPage,
   handleReservation,
-  handleTest,
 };
