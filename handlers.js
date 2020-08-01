@@ -16,7 +16,25 @@ const handleConfirmation = (req, res) => {
     email: reservation.email,
     seat: reservation.seat,
   };
-  console.log(newReservation.id);
+  console.log(newReservation);
+  const options = {
+    method: "POST",
+    uri: `${base_url}/slingair/users`,
+    body: {
+      id: uuidv4(),
+      flight: reservation.flight,
+      givenName: reservation.givenName,
+      surname: reservation.surname,
+      email: reservation.email,
+      seat: reservation.seat,
+    },
+    json: true,
+  };
+  rp(options)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => console.log(err.message));
   reservations.push(newReservation);
   currentReservationId = newReservation.id;
   res.status(201);
